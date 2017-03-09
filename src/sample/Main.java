@@ -545,7 +545,9 @@ public class Main extends Application {
             DataFetcher.getExchangeRate(secondCurrency);
         }
 
-        secondMoneySet.setText(CurrencyCalculation.exchange(firstCurrency, secondCurrency,
+        CurrencyCalculation currencyCalculation = new CurrencyCalculation();
+
+        secondMoneySet.setText(currencyCalculation.exchange(firstCurrency, secondCurrency,
                 Double.parseDouble(firstMoneySet.getText().toString())));
 
     }
