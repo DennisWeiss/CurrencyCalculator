@@ -443,9 +443,9 @@ public class Main extends Application {
                 while ((line = reader.readLine()) != null) {
                     lines.add(line);
                 }
-                for (int i = 1; i < lines.size(); i+=4) {
+                for (int i = 1; i < lines.size(); i += 4) {
                     if (currency1.getValue().toString().equals(lines.get(i))) {
-                        firstCurrency.setCurrency(lines.get(i), Double.valueOf(lines.get(i+1)));
+                        firstCurrency.setCurrency(lines.get(i), Double.valueOf(lines.get(i + 1)));
                     }
                 }
                 reader.close();
@@ -527,9 +527,9 @@ public class Main extends Application {
                 while ((line = reader.readLine()) != null) {
                     lines.add(line);
                 }
-                for (int i = 1; i < lines.size(); i+=4) {
+                for (int i = 1; i < lines.size(); i += 4) {
                     if (currency2.getValue().toString().equals(lines.get(i))) {
-                        secondCurrency.setCurrency(lines.get(i), Double.valueOf(lines.get(i+1)));
+                        secondCurrency.setCurrency(lines.get(i), Double.valueOf(lines.get(i + 1)));
                     }
                 }
                 reader.close();
@@ -548,14 +548,5 @@ public class Main extends Application {
         secondMoneySet.setText(CurrencyCalculation.exchange(firstCurrency, secondCurrency,
                 Double.parseDouble(firstMoneySet.getText().toString())));
 
-    }
-
-    static String ensureTwoDecimals(double money) {
-        double tenTimesMoney = 10 * money;
-        if (tenTimesMoney == (int)tenTimesMoney) {
-            return Double.toString(money)+"0";
-        } else {
-            return Double.toString(money);
-        }
     }
 }
