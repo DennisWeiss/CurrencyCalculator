@@ -43,6 +43,8 @@ public class Main extends Application {
         final TextField firstMoneySet = new TextField();
         final TextField secondMoneySet = new TextField();
 
+        secondMoneySet.setEditable(false);
+
         //secondMoneySet.setDisable(true);
 
         gridpane.setMargin(currency1, new Insets(10));
@@ -306,8 +308,10 @@ public class Main extends Application {
         vbox.getChildren().addAll(currencyName, rate, hbox);
         pane.getChildren().addAll(vbox);
 
-        ok.setOnAction(e ->
-                okButton(currencyName.getText().toString(), Double.valueOf(rate.getText().toString()))
+        ok.setOnAction(e -> {
+            okButton(currencyName.getText().toString(), Double.valueOf(rate.getText().toString()));
+            secondaryStage.close();
+                }
         );
 
         abort.setOnAction(e ->
