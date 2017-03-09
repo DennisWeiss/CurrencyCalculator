@@ -545,17 +545,9 @@ public class Main extends Application {
             DataFetcher.getExchangeRate(secondCurrency);
         }
 
+        secondMoneySet.setText(CurrencyCalculation.exchange(firstCurrency, secondCurrency,
+                Double.parseDouble(firstMoneySet.getText().toString())));
 
-        double money = 0.0;
-
-        try {
-            money = Math.round(Double.parseDouble(firstMoneySet.getText().toString()) * secondCurrency.rateToEUR
-                    / firstCurrency.rateToEUR * 100.0) / 100.0;
-        } catch (NumberFormatException e) {
-            money = 0.0;
-        }
-
-        secondMoneySet.setText(ensureTwoDecimals(money));
     }
 
     static String ensureTwoDecimals(double money) {
