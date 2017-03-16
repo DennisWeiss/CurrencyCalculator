@@ -45,8 +45,6 @@ public class Main extends Application {
 
         secondMoneySet.setEditable(false);
 
-        //secondMoneySet.setDisable(true);
-
         gridpane.setMargin(currency1, new Insets(10));
         gridpane.setMargin(currency2, new Insets(10));
 
@@ -58,8 +56,6 @@ public class Main extends Application {
 
         currency1.setValue("Euro");
         currency2.setValue("US Dollar");
-
-
 
         gridpane.setPadding(new Insets(50));
 
@@ -116,6 +112,8 @@ public class Main extends Application {
     }
 
     public void setComboBox(ComboBox currency) {
+
+        currency.getItems().clear();
 
         currency.getItems().addAll(
                 "Euro",
@@ -370,6 +368,9 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        setComboBox(currency1);
+        setComboBox(currency2);
     }
 
     static void calculation(ComboBox currency1, ComboBox currency2, Currency firstCurrency, Currency secondCurrency,
@@ -551,8 +552,18 @@ public class Main extends Application {
 
         CurrencyCalculation currencyCalculation = new CurrencyCalculation();
 
-        secondMoneySet.setText(currencyCalculation.exchange(firstCurrency, secondCurrency,
-                Double.parseDouble(firstMoneySet.getText().toString())));
+        double money = 0.0;
+
+        if (!firstMoneySet.getText().toString().equals("")) {
+            try {
+                money = Double.parseDouble(firstMoneySet.getText().toString());
+            } catch (NumberFormatException e) {
+
+            }
+
+        }
+
+        secondMoneySet.setText(currencyCalculation.exchange(firstCurrency, secondCurrency, money));
 
     }
 }
