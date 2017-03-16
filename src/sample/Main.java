@@ -550,7 +550,7 @@ public class Main extends Application {
             DataFetcher.getExchangeRate(secondCurrency);
         }
 
-        CurrencyCalculation currencyCalculation = new CurrencyCalculation();
+        Calculation currencyCalculation = new CurrencyCalculation();
 
         double money = 0.0;
 
