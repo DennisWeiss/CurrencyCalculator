@@ -9,7 +9,7 @@ public class CurrencyCalculation implements Calculation {
         double money;
 
         try {
-            money = Math.round(firstMoneySet * secondCurrency.rateToEUR / firstCurrency.rateToEUR * 100.0) / 100.0;
+            money = Math.round(firstMoneySet * secondCurrency.getRateToEUR() / firstCurrency.getRateToEUR() * 100.0) / 100.0;
         } catch (NumberFormatException e) {
             money = 0.0;
         }

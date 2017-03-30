@@ -27,8 +27,8 @@ public class DataFetcher {
     }
 
     public static void getExchangeRate(Currency currency) {
-        if (currency.code.equals("EUR")) {
-            currency.rateToEUR = 1.0;
+        if (currency.getCode().equals("EUR")) {
+            currency.setRateToEUR(1.0);
         } else {
             String json = null;
             try {
@@ -45,7 +45,7 @@ public class DataFetcher {
             JSONObject obj = new JSONObject(json);
             JSONObject rates = obj.getJSONObject("rates");
 
-            currency.rateToEUR = rates.getDouble(currency.code);
+            currency.setRateToEUR(rates.getDouble(currency.getCode()));
         }
     }
 }

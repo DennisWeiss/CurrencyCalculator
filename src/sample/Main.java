@@ -1,6 +1,7 @@
 package sample;
 
 import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,9 +26,9 @@ import java.util.Scanner;
 
 public class Main extends Application {
 
-    final ComboBox currency1 = new ComboBox();
-    final ComboBox currency2 = new ComboBox();
-    final GridPane gridpane = new GridPane();
+    final private ComboBox currency1 = new ComboBox();
+    final private ComboBox currency2 = new ComboBox();
+    final private GridPane gridpane = new GridPane();
 
     public static void main(String[] args) {
         launch(args);
@@ -543,10 +544,10 @@ public class Main extends Application {
             }
         }
 
-        if (!firstCurrency.isCustomCurrency) {
+        if (!firstCurrency.isCustomCurrency()) {
             DataFetcher.getExchangeRate(firstCurrency);
         }
-        if (!secondCurrency.isCustomCurrency) {
+        if (!secondCurrency.isCustomCurrency()) {
             DataFetcher.getExchangeRate(secondCurrency);
         }
 
