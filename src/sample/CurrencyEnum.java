@@ -22,6 +22,14 @@ public enum CurrencyEnum implements Calculation{
         this.code = code;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public double getRateToEUR() {
+        return rateToEUR;
+    }
+
     public void setCode(String code) {
         this.code = code;
     }

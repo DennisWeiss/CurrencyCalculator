@@ -16,6 +16,13 @@ public class Currency {
         isCustomCurrency = false;
     }
 
+    public Currency(String name, String code, double rateToEUR) {
+        this.name = name;
+        this.code = code;
+        this.rateToEUR = rateToEUR;
+        isCustomCurrency = false;
+    }
+
     public void setCurrency(String name, String code) {
         this.name = name;
         this.code = code;

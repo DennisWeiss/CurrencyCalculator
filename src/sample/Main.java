@@ -1,8 +1,11 @@
 package sample;
 
+import com.sun.istack.internal.Pool;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -26,9 +29,11 @@ import java.util.Scanner;
 
 public class Main extends Application {
 
+    private static boolean usingEnum = false;
     final private ComboBox currency1 = new ComboBox();
     final private ComboBox currency2 = new ComboBox();
     final private GridPane gridpane = new GridPane();
+
 
     public static void main(String[] args) {
         launch(args);
@@ -67,6 +72,18 @@ public class Main extends Application {
 
         Menu File = new Menu("File");
 
+        Menu Implementation = new Menu("Implementation");
+
+        CheckMenuItem useEnum = new CheckMenuItem("Use enum");
+        Implementation.getItems().addAll(useEnum);
+
+        useEnum.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                usingEnum = newValue;
+            }
+        });
+
         MenuItem NewCurrency = new MenuItem("Add new currency");
         MenuItem deleteCurrency = new MenuItem("Delete a custom currency");
         MenuItem deleteCurrencies = new MenuItem("Delete all custom currencies");
@@ -74,7 +91,7 @@ public class Main extends Application {
         MenuItem Exit = new MenuItem("Exit");
 
         File.getItems().addAll(NewCurrency, deleteCurrency, deleteCurrencies, separatorMenuItem, Exit);
-        menubar.getMenus().addAll(File);
+        menubar.getMenus().addAll(File, Implementation);
 
         NewCurrency.setOnAction(e ->
                 newCurrencyWindow()
@@ -551,20 +568,183 @@ public class Main extends Application {
             DataFetcher.getExchangeRate(secondCurrency);
         }
 
-        Calculation currencyCalculation = new CurrencyCalculation();
+        if (usingEnum) {
+            CurrencyEnum currencyEnum1;
+            currencyEnum1 = CurrencyEnum.USDollar;
+            if (currency1.getValue().toString().equals("Euro")) {
+                currencyEnum1 = CurrencyEnum.Euro;
+            } else if (currency1.getValue().toString().equals("US Dollar")) {
+                currencyEnum1 = CurrencyEnum.USDollar;
+            } else if (currency1.getValue().toString().equals("British Pound")) {
+                currencyEnum1 = CurrencyEnum.BritishPound;
+            } else if (currency1.getValue().toString().equals("Swiss Franc")) {
+                currencyEnum1 = CurrencyEnum.SwissFranc;
+            } else if (currency1.getValue().toString().equals("Australian Dollar")) {
+                currencyEnum1 = CurrencyEnum.AustralianDollar;
+            } else if (currency1.getValue().toString().equals("Bulgarian Lev")) {
+                currencyEnum1 = CurrencyEnum.BulgarianLev;
+            } else if (currency1.getValue().toString().equals("Brazilian Real")) {
+                currencyEnum1 = CurrencyEnum.BrazilianReal;
+            } else if (currency1.getValue().toString().equals("Canadian Dollar")) {
+                currencyEnum1 = CurrencyEnum.CanadianDollar;
+            } else if (currency1.getValue().toString().equals("Chinese Yuan")) {
+                currencyEnum1 = CurrencyEnum.ChineseYuan;
+            } else if (currency1.getValue().toString().equals("Czech Republic Koruna")) {
+                currencyEnum1 = CurrencyEnum.CzechRepublicKoruna;
+            } else if (currency1.getValue().toString().equals("Danish Krone")) {
+                currencyEnum1 = CurrencyEnum.DanishKrone;
+            } else if (currency1.getValue().toString().equals("Hong Kong Dollar")) {
+                currencyEnum1 = CurrencyEnum.HongKongDollar;
+            } else if (currency1.getValue().toString().equals("Croatian Kuna")) {
+                currencyEnum1 = CurrencyEnum.CroatianKuna;
+            } else if (currency1.getValue().toString().equals("Hungarian Forint")) {
+                currencyEnum1 = CurrencyEnum.HungarianForint;
+            } else if (currency1.getValue().toString().equals("Indonesian Rupiah")) {
+                currencyEnum1 = CurrencyEnum.IndonesianRupiah;
+            } else if (currency1.getValue().toString().equals("Israeli New Sheqel")) {
+                currencyEnum1 = CurrencyEnum.IsraeliNewSheqel;
+            } else if (currency1.getValue().toString().equals("Indian Rupee")) {
+                currencyEnum1 = CurrencyEnum.IndianRupee;
+            } else if (currency1.getValue().toString().equals("Japanese Yen")) {
+                currencyEnum1 = CurrencyEnum.JapaneseYen;
+            } else if (currency1.getValue().toString().equals("South Korean Won")) {
+                currencyEnum1 = CurrencyEnum.SouthKoreanWon;
+            } else if (currency1.getValue().toString().equals("Mexican Peso")) {
+                currencyEnum1 = CurrencyEnum.MexicanPeso;
+            } else if (currency1.getValue().toString().equals("Malaysian Ringgit")) {
+                currencyEnum1 = CurrencyEnum.MalaysianRinggit;
+            } else if (currency1.getValue().toString().equals("Norwegian Krone")) {
+                currencyEnum1 = CurrencyEnum.NorwegianKrone;
+            } else if (currency1.getValue().toString().equals("New Zealand Dollar")) {
+                currencyEnum1 = CurrencyEnum.NewZealandDollar;
+            } else if (currency1.getValue().toString().equals("Philippine Peso")) {
+                currencyEnum1 = CurrencyEnum.PhilippinePeso;
+            } else if (currency1.getValue().toString().equals("Polish Zloty")) {
+                currencyEnum1 = CurrencyEnum.PolishZloty;
+            } else if (currency1.getValue().toString().equals("Romanian Leu")) {
+                currencyEnum1 = CurrencyEnum.RomanianLeu;
+            } else if (currency1.getValue().toString().equals("Russian Ruble")) {
+                currencyEnum1 = CurrencyEnum.RussianRuble;
+            } else if (currency1.getValue().toString().equals("Swedish Krona")) {
+                currencyEnum1 = CurrencyEnum.SwedishKrona;
+            } else if (currency1.getValue().toString().equals("Singapore Dollar")) {
+                currencyEnum1 = CurrencyEnum.SingaporeDollar;
+            } else if (currency1.getValue().toString().equals("Thai Baht")) {
+                currencyEnum1 = CurrencyEnum.ThaiBaht;
+            } else if (currency1.getValue().toString().equals("Turkish Lira")) {
+                currencyEnum1 = CurrencyEnum.TurkishLira;
+            } else if (currency1.getValue().toString().equals("South African Rand")) {
+                currencyEnum1 = CurrencyEnum.SouthAfricanRand;
+            }
 
-        double money = 0.0;
+            CurrencyEnum currencyEnum2;
+            currencyEnum2 = CurrencyEnum.USDollar;
+            if (currency2.getValue().toString().equals("Euro")) {
+                currencyEnum2 = CurrencyEnum.Euro;
+            } else if (currency2.getValue().toString().equals("US Dollar")) {
+                currencyEnum2 = CurrencyEnum.USDollar;
+            } else if (currency2.getValue().toString().equals("British Pound")) {
+                currencyEnum2 = CurrencyEnum.BritishPound;
+            } else if (currency2.getValue().toString().equals("Swiss Franc")) {
+                currencyEnum2 = CurrencyEnum.SwissFranc;
+            } else if (currency2.getValue().toString().equals("Australian Dollar")) {
+                currencyEnum2 = CurrencyEnum.AustralianDollar;
+            } else if (currency2.getValue().toString().equals("Bulgarian Lev")) {
+                currencyEnum2 = CurrencyEnum.BulgarianLev;
+            } else if (currency2.getValue().toString().equals("Brazilian Real")) {
+                currencyEnum2 = CurrencyEnum.BrazilianReal;
+            } else if (currency2.getValue().toString().equals("Canadian Dollar")) {
+                currencyEnum2 = CurrencyEnum.CanadianDollar;
+            } else if (currency2.getValue().toString().equals("Chinese Yuan")) {
+                currencyEnum2 = CurrencyEnum.ChineseYuan;
+            } else if (currency2.getValue().toString().equals("Czech Republic Koruna")) {
+                currencyEnum2 = CurrencyEnum.CzechRepublicKoruna;
+            } else if (currency2.getValue().toString().equals("Danish Krone")) {
+                currencyEnum2 = CurrencyEnum.DanishKrone;
+            } else if (currency2.getValue().toString().equals("Hong Kong Dollar")) {
+                currencyEnum2 = CurrencyEnum.HongKongDollar;
+            } else if (currency2.getValue().toString().equals("Croatian Kuna")) {
+                currencyEnum2 = CurrencyEnum.CroatianKuna;
+            } else if (currency2.getValue().toString().equals("Hungarian Forint")) {
+                currencyEnum2 = CurrencyEnum.HungarianForint;
+            } else if (currency2.getValue().toString().equals("Indonesian Rupiah")) {
+                currencyEnum2 = CurrencyEnum.IndonesianRupiah;
+            } else if (currency2.getValue().toString().equals("Israeli New Sheqel")) {
+                currencyEnum2 = CurrencyEnum.IsraeliNewSheqel;
+            } else if (currency2.getValue().toString().equals("Indian Rupee")) {
+                currencyEnum2 = CurrencyEnum.IndianRupee;
+            } else if (currency2.getValue().toString().equals("Japanese Yen")) {
+                currencyEnum2 = CurrencyEnum.JapaneseYen;
+            } else if (currency2.getValue().toString().equals("South Korean Won")) {
+                currencyEnum2 = CurrencyEnum.SouthKoreanWon;
+            } else if (currency2.getValue().toString().equals("Mexican Peso")) {
+                currencyEnum2 = CurrencyEnum.MexicanPeso;
+            } else if (currency2.getValue().toString().equals("Malaysian Ringgit")) {
+                currencyEnum2 = CurrencyEnum.MalaysianRinggit;
+            } else if (currency2.getValue().toString().equals("Norwegian Krone")) {
+                currencyEnum2 = CurrencyEnum.NorwegianKrone;
+            } else if (currency2.getValue().toString().equals("New Zealand Dollar")) {
+                currencyEnum2 = CurrencyEnum.NewZealandDollar;
+            } else if (currency2.getValue().toString().equals("Philippine Peso")) {
+                currencyEnum2 = CurrencyEnum.PhilippinePeso;
+            } else if (currency2.getValue().toString().equals("Polish Zloty")) {
+                currencyEnum2 = CurrencyEnum.PolishZloty;
+            } else if (currency2.getValue().toString().equals("Romanian Leu")) {
+                currencyEnum2 = CurrencyEnum.RomanianLeu;
+            } else if (currency2.getValue().toString().equals("Russian Ruble")) {
+                currencyEnum2 = CurrencyEnum.RussianRuble;
+            } else if (currency2.getValue().toString().equals("Swedish Krona")) {
+                currencyEnum2 = CurrencyEnum.SwedishKrona;
+            } else if (currency2.getValue().toString().equals("Singapore Dollar")) {
+                currencyEnum2 = CurrencyEnum.SingaporeDollar;
+            } else if (currency2.getValue().toString().equals("Thai Baht")) {
+                currencyEnum2 = CurrencyEnum.ThaiBaht;
+            } else if (currency2.getValue().toString().equals("Turkish Lira")) {
+                currencyEnum2 = CurrencyEnum.TurkishLira;
+            } else if (currency2.getValue().toString().equals("South African Rand")) {
+                currencyEnum2 = CurrencyEnum.SouthAfricanRand;
+            }
+            double money = 0.0;
 
-        if (!firstMoneySet.getText().toString().equals("")) {
-            try {
-                money = Double.parseDouble(firstMoneySet.getText().toString());
-            } catch (NumberFormatException e) {
+            if (!firstMoneySet.getText().toString().equals("")) {
+                try {
+                    money = Double.parseDouble(firstMoneySet.getText().toString());
+                } catch (NumberFormatException e) {
+
+                }
 
             }
 
-        }
+            if (currencyEnum1 == CurrencyEnum.Euro) {
+                currencyEnum1.setRateToEUR(1.0);
+            } else {
+                currencyEnum1.updateRateToEUR();
+            }
 
-        secondMoneySet.setText(currencyCalculation.exchange(firstCurrency, secondCurrency, money));
+            if (currencyEnum2 == CurrencyEnum.Euro) {
+                currencyEnum2.setRateToEUR(1.0);
+            } else {
+                currencyEnum2.updateRateToEUR();
+            }
+
+            secondMoneySet.setText(currencyEnum2.exchange(new Currency(currencyEnum1.toString(), currencyEnum1.getCode(), currencyEnum1.getRateToEUR()),
+                    new Currency(currencyEnum2.toString(), currencyEnum2.getCode(), currencyEnum2.getRateToEUR()), money));
+        } else {
+            Calculation currencyCalculation = new CurrencyCalculation();
+
+            double money = 0.0;
+
+            if (!firstMoneySet.getText().toString().equals("")) {
+                try {
+                    money = Double.parseDouble(firstMoneySet.getText().toString());
+                } catch (NumberFormatException e) {
+
+                }
+
+            }
+
+            secondMoneySet.setText(currencyCalculation.exchange(firstCurrency, secondCurrency, money));
+        }
 
     }
 }
