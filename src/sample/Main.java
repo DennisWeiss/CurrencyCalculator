@@ -77,18 +77,19 @@ public class Main extends Application {
         CheckMenuItem useEnum = new CheckMenuItem("Use enum");
         Implementation.getItems().addAll(useEnum);
 
-        useEnum.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                usingEnum = newValue;
-            }
-        });
-
         MenuItem NewCurrency = new MenuItem("Add new currency");
         MenuItem deleteCurrency = new MenuItem("Delete a custom currency");
         MenuItem deleteCurrencies = new MenuItem("Delete all custom currencies");
         SeparatorMenuItem separatorMenuItem = new SeparatorMenuItem();
         MenuItem Exit = new MenuItem("Exit");
+
+        useEnum.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                usingEnum = newValue;
+                NewCurrency.setDisable(newValue);
+            }
+        });
 
         File.getItems().addAll(NewCurrency, deleteCurrency, deleteCurrencies, separatorMenuItem, Exit);
         menubar.getMenus().addAll(File, Implementation);
@@ -130,6 +131,10 @@ public class Main extends Application {
     }
 
     public void setComboBox(ComboBox currency) {
+        /**
+         * method to fill the ComboBox
+         * @param ComboBox
+         */
 
         currency.getItems().clear();
 
@@ -187,7 +192,11 @@ public class Main extends Application {
     }
 
     public void setComboBox(ComboBox currency, boolean onlyCustomsCurrencies) {
-
+        /**
+         * method to add custom currencies to the comboBox
+         * @param ComboBox
+         * @param onlyCustomCurrencies added
+         */
         BufferedReader reader = null;
         String line;
         ArrayList<String> lines = new ArrayList<String>(0);
