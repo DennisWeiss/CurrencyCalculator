@@ -1,9 +1,8 @@
 package sample;
 
 /**
- * Created by weiss on 30.11.2016.
+ * every currency is determined by a name, an official 3-digit code, a rate to Euro
  */
-
 public class Currency {
     private String name;
     private String code;

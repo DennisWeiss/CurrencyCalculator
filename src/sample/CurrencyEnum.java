@@ -5,7 +5,7 @@ import org.json.JSONObject;
 import java.io.*;
 
 /**
- * Created by weiss on 4/5/2017.
+ * CurrencyEnum for enum implementation
  */
 public enum CurrencyEnum implements Calculation{
     Euro("EUR"), USDollar("USD"), BritishPound("GBP"), SwissFranc("CHF"), AustralianDollar("AUD"), BulgarianLev("BGN"),

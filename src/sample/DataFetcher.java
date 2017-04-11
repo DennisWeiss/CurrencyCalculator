@@ -7,11 +7,12 @@ import java.util.Scanner;
 import org.json.*;
 import sun.rmi.runtime.Log;
 
+
 public class DataFetcher {
+    /**
+     * method to write the JSON Object from the exchange rate API into a file
+     */
     public static void writeInFile() {
-        /**
-         * method to write the JSON Object from the exchange rate API into a file
-         */
         try{
             URL url = new URL("http://api.fixer.io/latest");
 
@@ -29,11 +30,11 @@ public class DataFetcher {
         }
     }
 
+    /**
+     * method to set the rateToEUR of a Currency
+     * @param currency which is supposed to get the exchange rate for
+     */
     public static void getExchangeRate(Currency currency) {
-        /**
-         * method to set the rateToEUR of a Currency
-         * @param desiredCurrency
-         */
         if (currency.getCode().equals("EUR")) {
             currency.setRateToEUR(1.0);
         } else {

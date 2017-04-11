@@ -130,11 +130,11 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    /**
+     * method to fill the ComboBox
+     * @param currency ComboBox
+     */
     public void setComboBox(ComboBox currency) {
-        /**
-         * method to fill the ComboBox
-         * @param ComboBox
-         */
 
         currency.getItems().clear();
 
@@ -191,12 +191,13 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * method to add custom currencies to the comboBox
+     * @param currency ComboBox
+     * @param onlyCustomsCurrencies adding?
+     * @throws IOException
+     */
     public void setComboBox(ComboBox currency, boolean onlyCustomsCurrencies) {
-        /**
-         * method to add custom currencies to the comboBox
-         * @param ComboBox
-         * @param onlyCustomCurrencies added
-         */
         BufferedReader reader = null;
         String line;
         ArrayList<String> lines = new ArrayList<String>(0);
@@ -215,6 +216,11 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * method to delete custom currency from file
+     * @param currency as a String
+     * @throws FileNotFoundException
+     */
     public void deleteCurrency(String currency) throws FileNotFoundException {
         BufferedReader reader = null;
         String line;
@@ -355,6 +361,11 @@ public class Main extends Application {
         setComboBox(currency2, true);
     }
 
+    /**
+     * method to add custom currencies to the file
+     * @param name of the currency
+     * @param rate of the currency to Euro
+     */
     void addCurrency(String name, double rate) {
         BufferedReader reader = null;
         String line;
@@ -388,6 +399,9 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * method to clear the file for custom currencies
+     */
     public void deleteAllCurrencies() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("customCurrencies"));
