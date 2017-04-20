@@ -62,13 +62,7 @@ public enum CurrencyEnum implements Calculation{
         rateToEUR = rates.getDouble(code);
     }
 
-    /**
-     * takes two currencies and one set of money and returns the other set of money
-     * @param firstCurrency the currency of the first money set
-     * @param secondCurrency the  currency of the second money set
-     * @param firstMoneySet
-     * @return amount of money as string
-     */
+    @Override
     public String exchange(Currency firstCurrency, Currency secondCurrency, double firstMoneySet) {
         double money;
 
@@ -81,11 +75,7 @@ public enum CurrencyEnum implements Calculation{
         return ensureTwoDecimals(money);
     }
 
-    /**
-     * makes sure that there are always two decimals behind the decimal point
-     * @param money the amount of money as a double value
-     * @return amount of money as a string
-     */
+    @Override
     public String ensureTwoDecimals(double money) {
         double tenTimesMoney = 10 * money;
         if (tenTimesMoney == (int)tenTimesMoney) {
