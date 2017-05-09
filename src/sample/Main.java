@@ -1,13 +1,8 @@
 package sample;
 
-import com.sun.istack.internal.Pool;
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -16,16 +11,11 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.nio.DoubleBuffer;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.DoubleSummaryStatistics;
-import java.util.Scanner;
 
 public class Main extends Application {
 
@@ -195,7 +185,6 @@ public class Main extends Application {
      * method to add custom currencies to the comboBox
      * @param currency ComboBox
      * @param onlyCustomsCurrencies adding?
-     * @throws IOException
      */
     public void setComboBox(ComboBox currency, boolean onlyCustomsCurrencies) {
         BufferedReader reader = null;

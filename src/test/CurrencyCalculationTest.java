@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CurrencyCalculationTest {
     @org.junit.jupiter.api.Test
     void exchange() {
-        CurrencyCalculation currencyCalculation = new CurrencyCalculation();
+        Calculation currencyCalculation = CurrencyEnum.USDollar;
         Currency euro = new Currency("Euro", "EUR");
         euro.setRateToEUR(1);
         Currency currency1 = new Currency("Test", "XYZ");
@@ -23,7 +23,7 @@ class CurrencyCalculationTest {
 
     @org.junit.jupiter.api.Test
     void ensureTwoDecimals() {
-        CurrencyCalculation currencyCalculation = new CurrencyCalculation();
+        Calculation currencyCalculation = CurrencyEnum.USDollar;
         double number1 = 2.4;
         double number2 = -156;
         assertEquals("2.40", currencyCalculation.ensureTwoDecimals(number1));
